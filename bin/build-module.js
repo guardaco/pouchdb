@@ -26,13 +26,13 @@ var all = Promise.all.bind(Promise);
 // through aggressive bundling, ala pouchdb, because it's assumed that
 // for these packages bundle size is more important than modular deduping
 var AGGRESSIVELY_BUNDLED_PACKAGES =
-  ['pouchdb-for-coverage', 'pouchdb-node', 'pouchdb-browser'];
+  ['@guarda-co/pouchdb-for-coverage', '@guarda-co/pouchdb-node', '@guarda-co/pouchdb-browser'];
 // packages that only have a browser version
 var BROWSER_ONLY_PACKAGES =
-  ['pouchdb-browser'];
+  ['@guarda-co/pouchdb-browser'];
 // packages that only use the browser field to ignore dependencies
 var BROWSER_DEPENDENCY_ONLY_PACKAGES =
-  ['pouchdb-adapter-leveldb'];
+  ['@guarda-co/pouchdb-adapter-leveldb'];
 
 function buildModule(filepath) {
   var pkg = require(path.resolve(filepath, 'package.json'));
