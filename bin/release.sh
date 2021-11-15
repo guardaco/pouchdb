@@ -76,7 +76,7 @@ if [ -z $DRY_RUN ]; then
  if [ -z $BETA ]; then
     # Tag and push
     git tag $VERSION
-    git push --tags git@github.com:pouchdb/pouchdb.git $VERSION
+    git push --tags git@github.com:guardaco/pouchdb.git $VERSION
 
     # Cleanup
     git checkout $SOURCE_DIR
