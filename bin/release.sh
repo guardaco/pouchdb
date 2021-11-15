@@ -44,9 +44,21 @@ for pkg in $(ls packages/node_modules); do
         npm pack
     fi
   elif [ ! -z $BETA ]; then
-    npm publish --tag beta
+    if [ ! -z $PACK ]; then
+        npm pack
+    elif [ ! -z $OTP ]; then
+        npm publish --otp $OTP --tag beta
+    else
+        npm publish --tag beta
+    fi
   else
-    npm publish
+    if [ ! -z $PACK ]; then
+        npm pack
+    elif [ ! -z $OTP ]; then
+        npm publish --otp $OTP
+    else
+        npm publish
+    fi
   fi
   cd -
 done
