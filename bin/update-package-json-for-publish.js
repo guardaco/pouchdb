@@ -10,6 +10,7 @@
 var fs = require('fs');
 var path = require('path');
 var glob = require('glob');
+var semver = require('semver');
 var findRequires = require('find-requires');
 var builtinModules = require('builtin-modules');
 var uniq = require('lodash.uniq');
@@ -44,7 +45,7 @@ modules.forEach(function (mod) {
     if (topPkg.dependencies[dep]) {
       deps[dep] = topPkg.dependencies[dep];
     } else if (modules.indexOf(dep) !== -1) { // core pouchdb-* module
-      deps[dep] = topPkg.version;
+      deps[dep] = '^' + semver.major(topPkg.version);
     } else {
       throw new Error('Unknown dependency ' + dep);
     }

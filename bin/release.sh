@@ -10,6 +10,10 @@ else
   echo "Doing a real release! Use DRY_RUN=1 for a dry run instead."
 fi
 
+if [ ! -z $PACK ]; then
+  echo "Will npm pack instead of npm publish..."
+fi
+
 #make sure deps are up to date
 rm -fr node_modules
 npm install
@@ -36,6 +40,9 @@ for pkg in $(ls packages/node_modules); do
   echo "Publishing $pkg..."
   if [ ! -z $DRY_RUN ]; then
     echo "Dry run, not publishing"
+    if [ ! -z $PACK ]; then
+        npm pack
+    fi
   elif [ ! -z $BETA ]; then
     npm publish --tag beta
   else
